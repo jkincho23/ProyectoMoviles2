@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/globos"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:background="@color/color_primary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ImageView
+        android:id="@+id/imageView_Personaje"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="96dp"
+        android:contentDescription="@string/personaje"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/manzana" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="302dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="56dp"
+        android:autofillHints=""
+        android:background="@drawable/fondoet"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/text_nombre"
+        android:textAlignment="center"
+        android:textColor="@color/color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_Personaje"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="293dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/fondoboton"
+        android:text="@string/btn_texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+</androidx.constraintlayout.widget.ConstraintLayout>

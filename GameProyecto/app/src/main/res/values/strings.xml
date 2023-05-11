@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GameProyecto</string>
+    <string name="personaje">Personaje</string>
+    <string name="et_nombre">Como te llamas?</string>
+    <string name="btn_texto">Jugar</string>
+    <string name="text_nombre">Como te llamas?</string>
+
+</resources>
