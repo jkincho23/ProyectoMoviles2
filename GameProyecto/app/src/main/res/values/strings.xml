@@ -5,4 +5,10 @@
     <string name="btn_texto">Jugar</string>
     <string name="text_nombre">Como te llamas?</string>
 
+    // Nivel 1
+    <string name="et_vidas">Manzanas:</string>
+    <string name="jugadorNombre">Jugar:</string>
+    <string name="totalScore">Score: 0</string>
+    <string name="botonSumar">Comprobar</string>
+
 </resources>
