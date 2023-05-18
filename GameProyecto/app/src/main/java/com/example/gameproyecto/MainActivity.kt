@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             mp.stop()
             mp.release()
             val intent = Intent(this,MainActivity2::class.java)
-                         intent.putExtra("Jugador",nombre)
+            intent.putExtra("Jugador",nombre)
             startActivity(intent)
             finish()
 
