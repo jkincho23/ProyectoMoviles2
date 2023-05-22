@@ -1,6 +1,8 @@
 package com.example.gameproyecto
 
+import android.content.ContentValues
 import android.content.Intent
+
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +14,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 
 class MainActivity2 : AppCompatActivity() {
+
+
+
+
 
     private lateinit var myToolbar : Toolbar
     private lateinit var mp : MediaPlayer
@@ -37,6 +43,8 @@ class MainActivity2 : AppCompatActivity() {
     val numeros = arrayOf("cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Toast.makeText(this, "MainActivity2", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_main2)
 
         tv_score = findViewById(R.id.tv_score)
@@ -112,8 +120,9 @@ class MainActivity2 : AppCompatActivity() {
                         finish()
                     }
                 }
-                //Base de Datos
+                baseDeDatos()
                 et_Respuesta.setText("")
+                numeroAleatorio()
 
             }
 
@@ -126,6 +135,7 @@ class MainActivity2 : AppCompatActivity() {
 
 
     fun numeroAleatorio() {
+        score = 9
         if (score <= 9) {
             numAleatorio_Uno = (0..9).random()
             numAleatorio_Dos = (0..9).random()
@@ -162,4 +172,35 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
     }
+    fun baseDeDatos() {
+        val admin = AdminnSALiteOpenHelper(this, "BD", null, 1)
+        val BD = admin.writableDatabase
+
+        val consulta = BD.rawQuery("select * " +
+                "from puntaje " +
+                "where score = " +
+                "(select max(score) " +
+                "from puntaje)", null)
+        if (consulta.moveToFirst()) {
+            val temp_Nombre = consulta.getString(0)
+            val temp_Score = consulta.getString(1)
+
+            val bestScore = temp_Score.toInt()
+
+            if (score > bestScore) {
+                val modificacion = ContentValues()
+                modificacion.put("nombre", nombre_Jugador)
+                modificacion.put("score", score)
+                BD.update("puntaje", modificacion, "score=$bestScore", null)
+            }
+        } else {
+            val insertar = ContentValues()
+            insertar.put("nombre", nombre_Jugador)
+            insertar.put("score", score)
+            BD.insert("puntaje", null, insertar)
+        }
+        consulta.close()
+        BD.close()
+    }
+
 }
