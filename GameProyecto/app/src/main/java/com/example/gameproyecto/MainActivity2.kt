@@ -2,6 +2,7 @@ package com.example.gameproyecto
 
 import android.content.ContentValues
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
@@ -16,19 +17,16 @@ import androidx.appcompat.widget.Toolbar
 class MainActivity2 : AppCompatActivity() {
 
 
-
-
-
-    private lateinit var myToolbar : Toolbar
-    private lateinit var mp : MediaPlayer
-    private lateinit var mpGreat : MediaPlayer
-    private lateinit var mpBad : MediaPlayer
-    private lateinit var tv_nombre : TextView
-    private lateinit var tv_score : TextView
-    private lateinit var et_Respuesta : EditText
-    private lateinit var ivAuno : ImageView
-    private lateinit var iv_Vidas : ImageView
-    private lateinit var ivAdos : ImageView
+    private lateinit var myToolbar: Toolbar
+    private lateinit var mp: MediaPlayer
+    private lateinit var mpGreat: MediaPlayer
+    private lateinit var mpBad: MediaPlayer
+    private lateinit var tv_nombre: TextView
+    private lateinit var tv_score: TextView
+    private lateinit var et_Respuesta: EditText
+    private lateinit var ivAuno: ImageView
+    private lateinit var iv_Vidas: ImageView
+    private lateinit var ivAdos: ImageView
 
     private var score: Int = 0
     private var numAleatorio_Uno: Int = 0
@@ -40,7 +38,9 @@ class MainActivity2 : AppCompatActivity() {
     private lateinit var string_Vcore: String
     private lateinit var string_Vidas: String
 
-    val numeros = arrayOf("cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve")
+    val numeros =
+        arrayOf("cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,7 +62,7 @@ class MainActivity2 : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(R.mipmap.ic_launcher)
 
-        mp = MediaPlayer.create(this,R.raw.alphabet_song)
+        mp = MediaPlayer.create(this, R.raw.alphabet_song)
         mp.start()
         mp.isLooping = true
 
@@ -82,7 +82,7 @@ class MainActivity2 : AppCompatActivity() {
             println("numAleatorio_Dos: $numAleatorio_Dos")
             println("Comparison result: ${(numAleatorio_Uno + numAleatorio_Dos) == respuesta.toInt()}")
 
-            if((numAleatorio_Uno + numAleatorio_Dos) == respuesta.toInt()){
+            if ((numAleatorio_Uno + numAleatorio_Dos) == respuesta.toInt()) {
                 val intent = Intent(this, MainActivityNivel2::class.java)
                 string_Vcore = score.toString()
                 string_Vidas = vidas.toString()
@@ -94,8 +94,7 @@ class MainActivity2 : AppCompatActivity() {
                 startActivity(intent)
 
 
-            }
-            else{
+            } else {
                 mpBad.start()
                 vidas--
                 println("Vidas : ${vidas}")
@@ -127,8 +126,7 @@ class MainActivity2 : AppCompatActivity() {
             }
 
 
-        }
-        else{
+        } else {
             Toast.makeText(this, "Debes dar una respuesta", Toast.LENGTH_SHORT).show()
         }
     }
@@ -172,35 +170,37 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
     }
-    fun baseDeDatos() {
-        val admin = AdminnSALiteOpenHelper(this, "BD", null, 1)
-        val BD = admin.writableDatabase
 
-        val consulta = BD.rawQuery("select * " +
+fun baseDeDatos() {
+    val admin = AdminnSALiteOpenHelper(this, "BD", null, 1)
+    val BD = admin.writableDatabase
+
+    val consulta = BD.rawQuery(
+        "select * " +
                 "from puntaje " +
                 "where score = " +
                 "(select max(score) " +
-                "from puntaje)", null)
-        if (consulta.moveToFirst()) {
-            val temp_Nombre = consulta.getString(0)
-            val temp_Score = consulta.getString(1)
+                "from puntaje)",
+        null
+    )
+    if (consulta.moveToFirst()) {
+        val temp_nombre = consulta.getString(0)
+        val temp_Score = consulta.getString(1)
 
-            val bestScore = temp_Score.toInt()
+        val bestScore = temp_Score.toInt()
 
-            if (score > bestScore) {
-                val modificacion = ContentValues()
-                modificacion.put("nombre", nombre_Jugador)
-                modificacion.put("score", score)
-                BD.update("puntaje", modificacion, "score=$bestScore", null)
-            }
-        } else {
-            val insertar = ContentValues()
-            insertar.put("nombre", nombre_Jugador)
-            insertar.put("score", score)
-            BD.insert("puntaje", null, insertar)
+        if (score > bestScore) {
+            val modificacion = ContentValues()
+            modificacion.put("nombre", nombre_Jugador)
+            modificacion.put("score", score)
+            BD.update("puntaje", modificacion, "score=$bestScore", null)
         }
-        consulta.close()
-        BD.close()
+    } else {
+        val insertar = ContentValues()
+        insertar.put("nombre", nombre_Jugador)
+        insertar.put("score", score)
+        BD.insert("puntaje", null, insertar)
     }
-
+    BD.close()
+}
 }

@@ -181,22 +181,23 @@ class MainActivityNivel3 : AppCompatActivity() {
         }
     }
 
-
     fun baseDeDatos() {
         val admin = AdminnSALiteOpenHelper(this, "BD", null, 1)
         val BD = admin.writableDatabase
 
-        val consulta = BD.rawQuery("select * " +
-                "from puntaje " +
-                "where score = " +
-                "(select max(score) " +
-                "from puntaje)", null)
+        val consulta = BD.rawQuery(
+            "select * " +
+                    "from puntaje " +
+                    "where score = " +
+                    "(select max(score) " +
+                    "from puntaje)",
+            null
+        )
         if (consulta.moveToFirst()) {
-            val temp_Nombre = consulta.getString(0)
+            val temp_nombre = consulta.getString(0)
             val temp_Score = consulta.getString(1)
 
             val bestScore = temp_Score.toInt()
-
 
             if (score > bestScore) {
                 val modificacion = ContentValues()
@@ -212,6 +213,4 @@ class MainActivityNivel3 : AppCompatActivity() {
         }
         BD.close()
     }
-
-
 }
