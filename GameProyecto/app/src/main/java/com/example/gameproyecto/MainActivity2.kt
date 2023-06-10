@@ -86,6 +86,7 @@ class MainActivity2 : AppCompatActivity() {
         mpBad = MediaPlayer.create(this, R.raw.bad)
     }
 
+
     fun comparar(view: View) {
         val respuesta = et_Respuesta.text.toString()
 
@@ -95,20 +96,12 @@ class MainActivity2 : AppCompatActivity() {
             println("numAleatorio_Dos: $numAleatorio_Dos")
             println("Comparison result: ${(numAleatorio_Uno + numAleatorio_Dos) == respuesta.toInt()}")
 
-            if ((numAleatorio_Uno + numAleatorio_Dos) == respuesta.toInt()) {
-                val intent = Intent(this, MainActivityNivel2::class.java)
-                string_Vcore = score.toString()
-                string_Vidas = vidas.toString()
-
-                intent.putExtra("Jugador", nombre_Jugador)
-                intent.putExtra("score", string_Vcore)
-                intent.putExtra("vidas", string_Vidas)
-
-                ingresarResultado()
-                startActivity(intent)
-
-
-            } else {
+            if (result == respuesta.toInt()) {
+                mpGreat.start()
+                score++
+                tv_score.text = "Score: $score"
+            }
+            else {
                 mpBad.start()
                 vidas--
                 println("Vidas : ${vidas}")
@@ -133,20 +126,22 @@ class MainActivity2 : AppCompatActivity() {
                         finish()
                     }
                 }
-                et_Respuesta.setText("")
-                numeroAleatorio()
             }
-
-
+            ingresarResultado()
+            et_Respuesta.setText("")
+            numeroAleatorio()
         } else {
             Toast.makeText(this, "Debes dar una respuesta", Toast.LENGTH_SHORT).show()
         }
     }
 
 
+
+
+
     fun numeroAleatorio() {
-        score = 9
-        if (score <= 9) {
+
+        if (score <= 1) {
             numAleatorio_Uno = (0..9).random()
             numAleatorio_Dos = (0..9).random()
 
@@ -162,30 +157,40 @@ class MainActivity2 : AppCompatActivity() {
                         ivAdos.setImageResource(id)
                     }
                 }
-            } else {
-                val intent = Intent(this, MainActivity2::class.java)
-                string_Vcore = score.toString()
-                string_Vidas = vidas.toString()
-
-                intent.putExtra("Jugador", nombre_Jugador)
-                intent.putExtra("score", string_Vcore)
-                intent.putExtra("vidas", string_Vidas)
-
-                mp.stop()
-                mp.release()
-                startActivity(intent)
-                finish()
-
             }
+            else
+            {
+                numeroAleatorio()
+            }
+        }
+        else {
+            val intent = Intent(this, MainActivityNivel2::class.java)
+            string_Vcore = score.toString()
+            string_Vidas = vidas.toString()
+
+
+            intent.putExtra("Jugador", nombre_Jugador)
+            intent.putExtra("score", string_Vcore)
+            intent.putExtra("vidas", string_Vidas)
+
+
+
+            mp.stop()
+            mp.release()
+            startActivity(intent)
+            finish()
+
         }
     }
     fun ingresarResultado() {
 
         val datosJugador = HashMap<String, Any>()
-        datosJugador["nombre"] = nombre_Jugador
-        datosJugador["score"] = score
 
-        rootDataBaseRef.push().setValue(datosJugador)
+3
+        datosJugador["score"] = score
+        val nuevoChildRef = rootDataBaseRef.child(nombre_Jugador)
+
+        nuevoChildRef.setValue(datosJugador)
             .addOnSuccessListener {
                 Toast.makeText(this, "Datos guardados en Firebase", Toast.LENGTH_SHORT).show()
             }

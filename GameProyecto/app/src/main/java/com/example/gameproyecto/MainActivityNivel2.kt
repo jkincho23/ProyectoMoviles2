@@ -105,19 +105,12 @@ class MainActivityNivel2 : AppCompatActivity() {
             println("numAleatorio_Dos: $numAleatorio_Dos")
             println("Comparison result: ${(numAleatorio_Uno + numAleatorio_Dos) == respuesta.toInt()}")
 
-            if((numAleatorio_Uno + numAleatorio_Dos) == respuesta.toInt()){
-                val intent = Intent(this, MainActivityNivel3::class.java)
-                string_Vcore = score.toString()
-                string_Vidas = vidas.toString()
-
-                intent.putExtra("Jugador", nombre_Jugador)
-                intent.putExtra("score", string_Vcore)
-                intent.putExtra("vidas", string_Vidas)
-
-                editarResultado()
-                startActivity(intent)
+            if (result == respuesta.toInt()) {
+                mpGreat.start()
+                score++
+                tv_score.text = "Score: $score"
             }
-            else{
+            else {
                 mpBad.start()
                 vidas--
                 println("Vidas : ${vidas}")
@@ -142,61 +135,70 @@ class MainActivityNivel2 : AppCompatActivity() {
                         finish()
                     }
                 }
-                et_Respuesta.setText("")
-                numeroAleatorio();
             }
-        }
-        else{
+            ingresarResultado()
+            et_Respuesta.setText("")
+            numeroAleatorio()
+        } else {
             Toast.makeText(this, "Debes dar una respuesta", Toast.LENGTH_SHORT).show()
         }
     }
     fun numeroAleatorio() {
-        score = 19
-        if (score <= 19) {
+
+        if (score <= 3) {
             numAleatorio_Uno = (0..9).random()
             numAleatorio_Dos = (0..9).random()
 
             result = numAleatorio_Uno + numAleatorio_Dos
 
-            for (i in 0 until numeros.size) {
-                val id = resources.getIdentifier(numeros[i], "drawable", packageName)
-                if (numAleatorio_Uno == i) {
-                    ivAuno.setImageResource(id)
+                for (i in 0 until numeros.size) {
+                    val id = resources.getIdentifier(numeros[i], "drawable", packageName)
+                    if (numAleatorio_Uno == i) {
+                        ivAuno.setImageResource(id)
+                    }
+                    if (numAleatorio_Dos == i) {
+                        ivAdos.setImageResource(id)
+                    }
                 }
-                if (numAleatorio_Dos == i) {
-                    ivAdos.setImageResource(id)
-                }
-            }
-        } else {
-                val intent = Intent(this, MainActivityNivel2::class.java)
-                string_Vcore = score.toString()
-                string_Vidas = vidas.toString()
 
-                intent.putExtra("Jugador", nombre_Jugador)
-                intent.putExtra("score", string_Vcore)
-                intent.putExtra("vidas", string_Vidas)
 
-                mp.stop()
-                mp.release()
-                startActivity(intent)
-                finish()
+        }
+        else {
+            val intent = Intent(this, MainActivityNivel3::class.java)
+            string_Vcore = score.toString()
+            string_Vidas = vidas.toString()
+
+
+            intent.putExtra("Jugador", nombre_Jugador)
+            intent.putExtra("score", string_Vcore)
+            intent.putExtra("vidas", string_Vidas)
+
+
+
+            mp.stop()
+            mp.release()
+            startActivity(intent)
+            finish()
 
         }
     }
 
-    fun editarResultado() {
+    fun ingresarResultado() {
 
-        val referenciaRegistro = rootDataBaseRef.child(nombre_Jugador)
         val datosJugador = HashMap<String, Any>()
 
+        3
         datosJugador["score"] = score
+        val nuevoChildRef = rootDataBaseRef.child(nombre_Jugador)
 
-         referenciaRegistro.updateChildren(datosJugador)
+        nuevoChildRef.setValue(datosJugador)
             .addOnSuccessListener {
-                Toast.makeText(this, "Registro actualizado en Firebase", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Datos guardados en Firebase", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Error al actualizar el registro en Firebase", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error al guardar los datos en Firebase", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 }
+
