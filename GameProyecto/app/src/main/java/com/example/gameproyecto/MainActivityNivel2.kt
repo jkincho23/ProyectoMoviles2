@@ -11,8 +11,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+
 
 class MainActivityNivel2 : AppCompatActivity() {
+
+    private lateinit var fireBaseAuth: FirebaseAuth
+    private lateinit var authStateListener: FirebaseAuth.AuthStateListener
+
     private lateinit var myToolbar : Toolbar
     private lateinit var mp : MediaPlayer
     private lateinit var mpGreat : MediaPlayer
@@ -41,13 +49,15 @@ class MainActivityNivel2 : AppCompatActivity() {
 
         Toast.makeText(this, "Nivel 2 - Sumas Intermedio", Toast.LENGTH_SHORT).show()
 
+        fireBaseAuth =  Firebase.auth
+
         tv_score = findViewById(R.id.tv_score)
         tv_nombre = findViewById(R.id.tv_nombre)
         ivAuno = findViewById(R.id.NumeroUno)
         ivAdos = findViewById(R.id.NumeroDos)
         iv_Vidas = findViewById(R.id.imageView)
         et_Respuesta = findViewById(R.id.et_resultado)
-        vidas = 4
+        vidas = 3
         nombre_Jugador = intent.getStringExtra("Jugador").toString()
         tv_nombre.text = "Jugador $nombre_Jugador"
 

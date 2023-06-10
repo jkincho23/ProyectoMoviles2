@@ -10,5 +10,6 @@
     <string name="jugadorNombre">Jugar:</string>
     <string name="totalScore">Score: 0</string>
     <string name="botonSumar">Comprobar</string>
+    <string name="btn_comprobar">¡Comprobar!</string>
 
 </resources>

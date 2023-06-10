@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/tv_nombre"
-        android:layout_width="137dp"
-        android:layout_height="44dp"
+        android:layout_width="128dp"
+        android:layout_height="28dp"
         android:text="@string/jugadorNombre"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,46 +36,47 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="164dp"
         android:onClick="comparar"
-        android:text="Button"
+        android:text="@string/btn_comprobar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NumeroDos" />
+        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/NumeroUno"
-        android:layout_width="86dp"
-        android:layout_height="94dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="89dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="108dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_manzanas"
         app:srcCompat="@drawable/cero" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="86dp"
-        android:layout_height="38dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288"
-        app:srcCompat="@drawable/tresvidas" />
-
     <TextView
         android:id="@+id/tv_manzanas"
-        android:layout_width="137dp"
-        android:layout_height="44dp"
+        android:layout_width="72dp"
+        android:layout_height="24dp"
         android:text="@string/et_vidas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.237" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="76dp"
+        android:layout_height="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228"
+        app:srcCompat="@drawable/tresvidas" />
 
     <ImageView
         android:id="@+id/NumeroDos"
@@ -93,6 +94,8 @@
         android:layout_height="103dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="300dp"
+        app:layout_constraintEnd_toStartOf="@+id/NumeroDos"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/NumeroUno"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/adicion" />
@@ -101,8 +104,8 @@
         android:id="@+id/et_resultado"
         android:layout_width="166dp"
         android:layout_height="43dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="468dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="452dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,15 +113,15 @@
 
     <TextView
         android:id="@+id/tv_score"
-        android:layout_width="137dp"
-        android:layout_height="44dp"
+        android:layout_width="70dp"
+        android:layout_height="25dp"
         android:text="@string/totalScore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213" />
+        app:layout_constraintVertical_bias="0.192" />
 
 
 

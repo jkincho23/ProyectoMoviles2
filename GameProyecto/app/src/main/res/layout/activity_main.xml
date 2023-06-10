@@ -73,7 +73,7 @@
 
     <TextView
         android:id="@+id/tv_bestScore"
-        android:layout_width="486dp"
+        android:layout_width="414dp"
         android:layout_height="68dp"
         android:background="@drawable/fondoet"
         app:layout_constraintBottom_toBottomOf="parent"
