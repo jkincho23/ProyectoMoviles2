@@ -2,7 +2,6 @@ package com.example.gameproyecto
 
 import android.content.ContentValues
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +22,6 @@ class MainActivity2 : AppCompatActivity() {
 
     private lateinit var rootDataBaseRef: DatabaseReference
     private lateinit var fireBaseAuth: FirebaseAuth
-    private lateinit var authStateListener: FirebaseAuth.AuthStateListener
 
     private lateinit var myToolbar: Toolbar
     private lateinit var mp: MediaPlayer
@@ -55,8 +53,15 @@ class MainActivity2 : AppCompatActivity() {
         Toast.makeText(this, "MainActivity2", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_main2)
 
-        fireBaseAuth =  Firebase.auth
-        rootDataBaseRef = FirebaseDatabase.getInstance().getReference().child("MyData")
+        initComponents()
+        numeroAleatorio()
+
+    }
+
+
+    fun initComponents(){
+        fireBaseAuth = Firebase.auth
+        rootDataBaseRef = FirebaseDatabase.getInstance().reference.child("MyData")
 
         tv_score = findViewById(R.id.tv_score)
         tv_nombre = findViewById(R.id.tv_nombre)
@@ -79,9 +84,6 @@ class MainActivity2 : AppCompatActivity() {
 
         mpGreat = MediaPlayer.create(this, R.raw.wonderful)
         mpBad = MediaPlayer.create(this, R.raw.bad)
-
-        numeroAleatorio()
-
     }
 
     fun comparar(view: View) {
@@ -102,6 +104,7 @@ class MainActivity2 : AppCompatActivity() {
                 intent.putExtra("score", string_Vcore)
                 intent.putExtra("vidas", string_Vidas)
 
+                ingresarResultado()
                 startActivity(intent)
 
 
@@ -130,10 +133,8 @@ class MainActivity2 : AppCompatActivity() {
                         finish()
                     }
                 }
-                baseDeDatos2()
                 et_Respuesta.setText("")
                 numeroAleatorio()
-
             }
 
 
@@ -166,12 +167,9 @@ class MainActivity2 : AppCompatActivity() {
                 string_Vcore = score.toString()
                 string_Vidas = vidas.toString()
 
-
                 intent.putExtra("Jugador", nombre_Jugador)
                 intent.putExtra("score", string_Vcore)
                 intent.putExtra("vidas", string_Vidas)
-
-
 
                 mp.stop()
                 mp.release()
@@ -181,42 +179,19 @@ class MainActivity2 : AppCompatActivity() {
             }
         }
     }
+    fun ingresarResultado() {
 
-fun baseDeDatos() {
-    val admin = AdminnSALiteOpenHelper(this, "BD", null, 1)
-    val BD = admin.writableDatabase
+        val datosJugador = HashMap<String, Any>()
+        datosJugador["nombre"] = nombre_Jugador
+        datosJugador["score"] = score
 
-    val consulta = BD.rawQuery(
-        "select * " +
-                "from puntaje " +
-                "where score = " +
-                "(select max(score) " +
-                "from puntaje)",
-        null
-    )
-    if (consulta.moveToFirst()) {
-        val temp_nombre = consulta.getString(0)
-        val temp_Score = consulta.getString(1)
-
-        val bestScore = temp_Score.toInt()
-
-        if (score > bestScore) {
-            val modificacion = ContentValues()
-            modificacion.put("nombre", nombre_Jugador)
-            modificacion.put("score", score)
-            BD.update("puntaje", modificacion, "score=$bestScore", null)
-        }
-    } else {
-        val insertar = ContentValues()
-        insertar.put("nombre", nombre_Jugador)
-        insertar.put("score", score)
-        BD.insert("puntaje", null, insertar)
-    }
-    BD.close()
-}
-
-    fun baseDeDatos2(){
-
-        rootDataBaseRef.push().setValue(score);
+        rootDataBaseRef.push().setValue(datosJugador)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Datos guardados en Firebase", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Error al guardar los datos en Firebase", Toast.LENGTH_SHORT)
+                    .show()
+            }
     }
 }

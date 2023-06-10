@@ -13,13 +13,15 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 
 class MainActivityNivel2 : AppCompatActivity() {
 
+    private lateinit var rootDataBaseRef: DatabaseReference
     private lateinit var fireBaseAuth: FirebaseAuth
-    private lateinit var authStateListener: FirebaseAuth.AuthStateListener
 
     private lateinit var myToolbar : Toolbar
     private lateinit var mp : MediaPlayer
@@ -48,8 +50,15 @@ class MainActivityNivel2 : AppCompatActivity() {
         setContentView(R.layout.activity_main_nivel2)
 
         Toast.makeText(this, "Nivel 2 - Sumas Intermedio", Toast.LENGTH_SHORT).show()
+        initComponents()
 
-        fireBaseAuth =  Firebase.auth
+        numeroAleatorio()
+
+    }
+
+    fun initComponents(){
+        fireBaseAuth = Firebase.auth
+        rootDataBaseRef = FirebaseDatabase.getInstance().reference.child("MyData")
 
         tv_score = findViewById(R.id.tv_score)
         tv_nombre = findViewById(R.id.tv_nombre)
@@ -85,9 +94,6 @@ class MainActivityNivel2 : AppCompatActivity() {
 
         mpGreat = MediaPlayer.create(this, R.raw.wonderful)
         mpBad = MediaPlayer.create(this, R.raw.bad)
-
-        numeroAleatorio()
-
     }
 
     fun comparar(view: View) {
@@ -108,9 +114,8 @@ class MainActivityNivel2 : AppCompatActivity() {
                 intent.putExtra("score", string_Vcore)
                 intent.putExtra("vidas", string_Vidas)
 
+                editarResultado()
                 startActivity(intent)
-
-
             }
             else{
                 mpBad.start()
@@ -137,21 +142,14 @@ class MainActivityNivel2 : AppCompatActivity() {
                         finish()
                     }
                 }
-                baseDeDatos();
                 et_Respuesta.setText("")
                 numeroAleatorio();
-
             }
-
-
         }
         else{
             Toast.makeText(this, "Debes dar una respuesta", Toast.LENGTH_SHORT).show()
         }
     }
-
-
-
     fun numeroAleatorio() {
         score = 19
         if (score <= 19) {
@@ -174,12 +172,9 @@ class MainActivityNivel2 : AppCompatActivity() {
                 string_Vcore = score.toString()
                 string_Vidas = vidas.toString()
 
-
                 intent.putExtra("Jugador", nombre_Jugador)
                 intent.putExtra("score", string_Vcore)
                 intent.putExtra("vidas", string_Vidas)
-
-
 
                 mp.stop()
                 mp.release()
@@ -189,36 +184,19 @@ class MainActivityNivel2 : AppCompatActivity() {
         }
     }
 
-    fun baseDeDatos() {
-        val admin = AdminnSALiteOpenHelper(this, "BD", null, 1)
-        val BD = admin.writableDatabase
+    fun editarResultado() {
 
-        val consulta = BD.rawQuery(
-            "select * " +
-                    "from puntaje " +
-                    "where score = " +
-                    "(select max(score) " +
-                    "from puntaje)",
-            null
-        )
-        if (consulta.moveToFirst()) {
-            val temp_nombre = consulta.getString(0)
-            val temp_Score = consulta.getString(1)
+        val referenciaRegistro = rootDataBaseRef.child(nombre_Jugador)
+        val datosJugador = HashMap<String, Any>()
 
-            val bestScore = temp_Score.toInt()
+        datosJugador["score"] = score
 
-            if (score > bestScore) {
-                val modificacion = ContentValues()
-                modificacion.put("nombre", nombre_Jugador)
-                modificacion.put("score", score)
-                BD.update("puntaje", modificacion, "score=$bestScore", null)
+         referenciaRegistro.updateChildren(datosJugador)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Registro actualizado en Firebase", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            val insertar = ContentValues()
-            insertar.put("nombre", nombre_Jugador)
-            insertar.put("score", score)
-            BD.insert("puntaje", null, insertar)
-        }
-        BD.close()
+            .addOnFailureListener {
+                Toast.makeText(this, "Error al actualizar el registro en Firebase", Toast.LENGTH_SHORT).show()
+            }
     }
 }
