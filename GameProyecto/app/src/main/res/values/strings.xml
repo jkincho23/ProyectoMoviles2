@@ -11,5 +11,8 @@
     <string name="totalScore">Score: 0</string>
     <string name="botonSumar">Comprobar</string>
     <string name="btn_comprobar">¡Comprobar!</string>
+    <string name="tv_selecJuego">¡Selecione el juego que desees jugar!</string>
+    <string name="tv_fruit">Fruit Maths</string>
+    <string name="tv_words">Words Test</string>
 
 </resources>

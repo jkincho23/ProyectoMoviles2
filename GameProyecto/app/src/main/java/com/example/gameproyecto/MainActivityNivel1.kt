@@ -1,6 +1,5 @@
 package com.example.gameproyecto
 
-import android.content.ContentValues
 import android.content.Intent
 
 import android.media.MediaPlayer
@@ -18,7 +17,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
-class MainActivity2 : AppCompatActivity() {
+class MainActivityNivel1 : AppCompatActivity() {
 
     private lateinit var rootDataBaseRef: DatabaseReference
     private lateinit var fireBaseAuth: FirebaseAuth
@@ -186,7 +185,6 @@ class MainActivity2 : AppCompatActivity() {
 
         val datosJugador = HashMap<String, Any>()
 
-3
         datosJugador["score"] = score
         val nuevoChildRef = rootDataBaseRef.child(nombre_Jugador)
 

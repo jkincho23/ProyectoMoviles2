@@ -1,11 +1,9 @@
 package com.example.gameproyecto
 
-import android.content.ContentValues
 import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -69,11 +67,11 @@ class MainActivityNivel3 : AppCompatActivity() {
         tv_nombre.text = "Jugador $nombre_Jugador"
 
         string_Vcore = intent.getStringExtra("score").toString()
-        score = Integer.parseInt(string_Vcore);
+        score = Integer.parseInt(string_Vcore)
         tv_score.text = "Score: $score"
 
         string_Vidas = intent.getStringExtra("vidas").toString()
-        vidas = Integer.parseInt(string_Vidas);
+        vidas = Integer.parseInt(string_Vidas)
 
         when (vidas) {
             3 -> iv_Vidas.setImageResource(R.drawable.tresvidas)
@@ -94,7 +92,7 @@ class MainActivityNivel3 : AppCompatActivity() {
         mpBad = MediaPlayer.create(this, R.raw.bad)
     }
 
-    fun comparar(view: View) {
+    fun comparar() {
         val respuesta = et_Respuesta.text.toString()
 
         if (respuesta.isNotEmpty()) {

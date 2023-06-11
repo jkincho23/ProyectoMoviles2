@@ -12,6 +12,13 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivityWords1"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".MainActivityNivel4"
             android:exported="false" />
         <activity
@@ -21,7 +28,7 @@
             android:name=".MainActivityNivel2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".MainActivityNivel1"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -7,7 +7,6 @@
     android:background="@drawable/globos"
     tools:context=".MainActivity">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -22,64 +21,80 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
-
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/imageView_Personaje"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="96dp"
-        android:contentDescription="@string/personaje"
+    <TextView
+        android:id="@+id/tv_elegirJuego"
+        android:layout_width="322dp"
+        android:layout_height="69dp"
+        android:background="@drawable/fondoet"
+        android:text="@string/tv_selecJuego"
+        android:textAlignment="center"
+        android:textSize="24sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/manzana" />
+        app:layout_constraintVertical_bias="0.326" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="302dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="56dp"
-        android:autofillHints=""
-        android:background="@drawable/fondoet"
-        android:ems="10"
-        android:hint="@string/text_nombre"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="@color/color_primary"
+    <ImageButton
+        android:id="@+id/fruitBtn"
+        android:layout_width="110dp"
+        android:layout_height="94dp"
+        android:background="@color/color_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintHorizontal_bias="0.255"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_Personaje"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="LabelFor" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="293dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/fondoboton"
-        android:text="@string/btn_texto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.579"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
 
     <TextView
-        android:id="@+id/tv_bestScore"
-        android:layout_width="414dp"
-        android:layout_height="68dp"
+        android:id="@+id/tv_words"
+        android:layout_width="96dp"
+        android:layout_height="29dp"
         android:background="@drawable/fondoet"
+        android:text="@string/tv_words"
+        android:textAlignment="center"
+        android:textSize="18sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.742"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.672" />
+
+    <TextView
+        android:id="@+id/tv_fruits"
+        android:layout_width="96dp"
+        android:layout_height="29dp"
+        android:background="@drawable/fondoet"
+        android:text="@string/tv_fruit"
+        android:textAlignment="center"
+        android:textSize="18sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.672" />
+
+    <ImageButton
+        android:id="@+id/wordsBtn"
+        android:layout_width="110dp"
+        android:layout_height="94dp"
+        android:background="@color/color_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.579"
+        app:srcCompat="@drawable/words2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
