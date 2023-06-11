@@ -14,5 +14,7 @@
     <string name="tv_selecJuego">¡Selecione el juego que desees jugar!</string>
     <string name="tv_fruit">Fruit Maths</string>
     <string name="tv_words">Words Test</string>
+    <string name="tv_intentos">Intentos:</string>
+    <string name="btn_comprobark">¡Comprobar!</string>
 
 </resources>

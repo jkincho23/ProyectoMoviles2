@@ -48,15 +48,12 @@ class MainActivityNivel1 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         Toast.makeText(this, "MainActivity2", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_main2)
 
         initComponents()
         numeroAleatorio()
-
     }
-
 
     fun initComponents(){
         fireBaseAuth = Firebase.auth
@@ -171,8 +168,6 @@ class MainActivityNivel1 : AppCompatActivity() {
             intent.putExtra("Jugador", nombre_Jugador)
             intent.putExtra("score", string_Vcore)
             intent.putExtra("vidas", string_Vidas)
-
-
 
             mp.stop()
             mp.release()

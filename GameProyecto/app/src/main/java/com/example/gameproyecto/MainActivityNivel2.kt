@@ -168,18 +168,14 @@ class MainActivityNivel2 : AppCompatActivity() {
             string_Vcore = score.toString()
             string_Vidas = vidas.toString()
 
-
             intent.putExtra("Jugador", nombre_Jugador)
             intent.putExtra("score", string_Vcore)
             intent.putExtra("vidas", string_Vidas)
-
-
 
             mp.stop()
             mp.release()
             startActivity(intent)
             finish()
-
         }
     }
 
@@ -187,7 +183,6 @@ class MainActivityNivel2 : AppCompatActivity() {
 
         val datosJugador = HashMap<String, Any>()
 
-        3
         datosJugador["score"] = score
         val nuevoChildRef = rootDataBaseRef.child(nombre_Jugador)
 
