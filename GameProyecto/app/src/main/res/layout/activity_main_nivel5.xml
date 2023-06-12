@@ -90,18 +90,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cero" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="121dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="296dp"
-        app:layout_constraintEnd_toStartOf="@+id/NumeroDos"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/NumeroUno"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/resta" />
-
     <EditText
         android:id="@+id/et_resultado"
         android:layout_width="166dp"
@@ -127,6 +115,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toTopOf="@+id/et_resultado"
+        app:layout_constraintEnd_toStartOf="@+id/NumeroDos"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toEndOf="@+id/NumeroUno"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarNivel3"
+        app:layout_constraintVertical_bias="0.956"
+        app:srcCompat="@drawable/multiplicacion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
