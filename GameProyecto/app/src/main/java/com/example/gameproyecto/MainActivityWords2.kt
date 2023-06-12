@@ -11,8 +11,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
-class MainActivityWords1 : AppCompatActivity() {
-
+class MainActivityWords2 : AppCompatActivity() {
     private lateinit var rootDataBaseRef: DatabaseReference
     private lateinit var fireBaseAuth: FirebaseAuth
 
@@ -25,8 +24,6 @@ class MainActivityWords1 : AppCompatActivity() {
     private lateinit var iv_vidas: ImageView
 
     private lateinit var nombre_Jugador: String
-    private lateinit var string_Vcore: String
-    private lateinit var string_Vidas: String
 
     private var indice: Int = 0
     private var score: Int = 0
@@ -37,14 +34,14 @@ class MainActivityWords1 : AppCompatActivity() {
     private lateinit var mpBad: MediaPlayer
 
     val words = arrayOf(
-        "rock", "blue", "fire", "tree", "fish", "book", "time", "love", "play", "moon",
-        "wave", "game", "park", "rain", "sand", "bird", "idea", "baby", "door", "star",
-        "home", "song", "mind", "leaf", "hope", "girl", "desk", "city", "cool", "hand"
+        "apple", "dance", "ocean", "smile", "clock", "music", "fairy", "tiger", "happy", "river",
+        "dream", "peace", "panda", "sunny", "cloud", "magic", "beach", "heart", "sugar", "wings",
+        "beard", "pizza", "worry", "flame", "beast", "angel", "brave", "beauty", "piano", "quiet"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_words1)
+        setContentView(R.layout.activity_main_activity2_words2)
 
         initComponents()
         randomWord()
@@ -75,11 +72,14 @@ class MainActivityWords1 : AppCompatActivity() {
 
         nombre_Jugador = intent.getStringExtra("Jugador").toString()
         tv_nombre.text = "Nombre:  $nombre_Jugador"
+
+        score = Integer.parseInt(intent.getStringExtra("score").toString())
+        tv_score.text = "Score: $score"
+
+        vidas = Integer.parseInt(intent.getStringExtra("vidas").toString())
     }
 
     fun play() {
-
-        val response = result.text.toString()
 
         if (!result.text.toString().equals("")) {
             if (words[indice] == result.text.toString()) {
@@ -92,7 +92,7 @@ class MainActivityWords1 : AppCompatActivity() {
                 Toast.makeText(this, "¡Your wrong!", Toast.LENGTH_SHORT).show()
                 mpBad.start()
                 vidas--
-                println("Vidas : ${vidas}")
+                println("Vidas : $vidas")
                 when (vidas) {
                     3 -> {
                         iv_vidas.setImageResource(R.drawable.tresvidask)
@@ -113,13 +113,13 @@ class MainActivityWords1 : AppCompatActivity() {
                         finish()
                     }
                 }
-             }
+            }
             result.setText("")
             ingresarResultado()
             randomWord()
-            }else{
-                Toast.makeText(this, "¡Type a response!", Toast.LENGTH_SHORT).show()
-            }
+        }else{
+            Toast.makeText(this, "¡Type a response!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun randomWord(){ //este metodo genera la posicion random y desordena la palabra a mostrar
@@ -129,21 +129,6 @@ class MainActivityWords1 : AppCompatActivity() {
         tempWord.shuffle()
         indice = wordNumber
         tv_word.text = tempWord.joinToString("")
-
-        if (score >= 5) {
-            val intent = Intent(this, MainActivityWords2::class.java)
-            string_Vcore = score.toString()
-            string_Vidas = vidas.toString()
-
-            intent.putExtra("Jugador", nombre_Jugador)
-            intent.putExtra("score", string_Vcore)
-            intent.putExtra("vidas", string_Vidas)
-
-            mp.stop()
-            mp.release()
-            startActivity(intent)
-            finish()
-        }
     }
     fun ingresarResultado() {
 

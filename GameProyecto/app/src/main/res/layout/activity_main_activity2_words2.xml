@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/globos"
-    tools:context=".MainActivityWords1">
+    tools:context=".MainActivityWords2">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarNivel1"
@@ -109,6 +109,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

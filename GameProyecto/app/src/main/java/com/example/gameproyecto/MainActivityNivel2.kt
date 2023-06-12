@@ -71,7 +71,7 @@ class MainActivityNivel2 : AppCompatActivity() {
         tv_nombre.text = "Jugador $nombre_Jugador"
 
         string_Vcore = intent.getStringExtra("score").toString()
-        score = Integer.parseInt(string_Vcore);
+        score = Integer.parseInt(string_Vcore)
         tv_score.text = "Score: $score"
 
         string_Vidas = intent.getStringExtra("vidas").toString()
