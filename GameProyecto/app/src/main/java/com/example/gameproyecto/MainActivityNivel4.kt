@@ -145,7 +145,7 @@ class MainActivityNivel4 : AppCompatActivity() {
 
     fun numeroAleatorio() {
 
-        if (score <= 3) {
+        if (score <= 8) {
             numAleatorio_Uno = (0..9).random()
             numAleatorio_Dos = (0..9).random()
 

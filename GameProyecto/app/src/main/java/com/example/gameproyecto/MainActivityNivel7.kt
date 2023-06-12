@@ -51,7 +51,7 @@ class MainActivityNivel7 : AppCompatActivity() {
 
         fun numeroAleatorio() {
 
-            if (score <= 3) {
+            if (score <= 17) {
                 numAleatorio_Uno = (0..9).random()
                 numAleatorio_Dos = (0..9).random()
 
@@ -163,7 +163,7 @@ class MainActivityNivel7 : AppCompatActivity() {
                         iv_Vidas.setImageResource(R.drawable.dosvidas)
                         mp.stop()
                         mp.release()
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, MainActivityNivel8::class.java)
                         startActivity(intent)
                         finish()
                     }
@@ -177,7 +177,40 @@ class MainActivityNivel7 : AppCompatActivity() {
         }
     }
 
+   fun numeroAleatorio() {
+        if (score <= 17) {
+            numAleatorio_Uno = (Math.random() * 9 + 1).toInt()
+            numAleatorio_Dos = (Math.random() * 9 + 1).toInt()
+            result = numAleatorio_Uno / numAleatorio_Dos
 
+            while (numAleatorio_Uno % numAleatorio_Dos != 0 || result == 0) {
+                numAleatorio_Uno = (Math.random() * 9 + 1).toInt()
+                numAleatorio_Dos = (Math.random() * 9 + 1).toInt()
+                result = numAleatorio_Uno / numAleatorio_Dos
+            }
+
+            for (i in numeros.indices) {
+                val id = resources.getIdentifier(numeros[i], "drawable", packageName)
+                if (numAleatorio_Uno == i) {
+                    ivAuno.setImageResource(id)
+                }
+                if (numAleatorio_Dos == i) {
+                    ivAdos.setImageResource(id)
+                }
+            }
+        } else {
+            val intent = Intent(this, MainActivityNivel8::class.java)
+            string_Vcore = score.toString()
+            string_Vidas = vidas.toString()
+            intent.putExtra("jugador", nombre_Jugador)
+            intent.putExtra("score", string_Vcore)
+            intent.putExtra("vidas", string_Vidas)
+            mp.stop()
+            mp.release()
+            startActivity(intent)
+            finish()
+        }
+    }
 
     fun ingresarResultado() {
 
@@ -197,3 +230,4 @@ class MainActivityNivel7 : AppCompatActivity() {
             }
     }
 }
+
