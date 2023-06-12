@@ -160,8 +160,6 @@ class MainActivityNivel4 : AppCompatActivity() {
                     ivAdos.setImageResource(id)
                 }
             }
-
-
         }
         else {
             val intent = Intent(this, MainActivityNivel5::class.java)
