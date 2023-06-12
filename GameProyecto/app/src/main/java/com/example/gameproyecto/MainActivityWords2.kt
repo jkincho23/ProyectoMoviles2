@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -51,6 +52,11 @@ class MainActivityWords2 : AppCompatActivity() {
         fireBaseAuth = Firebase.auth
         rootDataBaseRef = FirebaseDatabase.getInstance().reference.child("WordsData")
 
+        val myToolbar: Toolbar = findViewById(R.id.toolbarWordsNivel2)
+        setSupportActionBar(myToolbar)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setIcon(R.mipmap.ic_launcher)
+
         checkBtn = findViewById(R.id.btnComrpobarK)
         result =  findViewById(R.id.et_resultadoWords)
         tv_word = findViewById(R.id.tv_word)
@@ -86,10 +92,7 @@ class MainActivityWords2 : AppCompatActivity() {
                 mpGreat.start()
                 score++
                 tv_score.text = "Score: $score"
-                Toast.makeText(this, "¡Your right!", Toast.LENGTH_SHORT).show()
-
             } else {
-                Toast.makeText(this, "¡Your wrong!", Toast.LENGTH_SHORT).show()
                 mpBad.start()
                 vidas--
                 println("Vidas : $vidas")

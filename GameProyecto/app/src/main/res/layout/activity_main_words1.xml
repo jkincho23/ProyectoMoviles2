@@ -8,7 +8,7 @@
     tools:context=".MainActivityWords1">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarNivel1"
+        android:id="@+id/toolbarWordsNivel1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_primary"
