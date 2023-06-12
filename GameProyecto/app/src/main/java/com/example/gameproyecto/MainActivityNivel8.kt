@@ -49,7 +49,7 @@ class MainActivityNivel8 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_nivel8)
 
-        Toast.makeText(this, "Nivel 6 - Multiplicaciones Intermedias", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Nivel 8 - Divisiones Intermedias", Toast.LENGTH_SHORT).show()
         initComponents()
 
         numeroAleatorio()
@@ -103,7 +103,7 @@ class MainActivityNivel8 : AppCompatActivity() {
 
             println("numAleatorio_Uno: $numAleatorio_Uno")
             println("numAleatorio_Dos: $numAleatorio_Dos")
-            println("Comparison result: ${(numAleatorio_Uno * numAleatorio_Dos) == respuesta.toInt()}")
+            println("Comparison result: ${(numAleatorio_Uno / numAleatorio_Dos) == respuesta.toInt()}")
 
             if (result == respuesta.toInt()) {
                 mpGreat.start()
@@ -144,34 +144,33 @@ class MainActivityNivel8 : AppCompatActivity() {
         }
     }
     fun numeroAleatorio() {
+        if (score <= 17) {
+            numAleatorio_Uno = (Math.random() * 9 + 1).toInt()
+            numAleatorio_Dos = (Math.random() * 9 + 1).toInt()
+            result = numAleatorio_Uno / numAleatorio_Dos
 
-        if (score <= 3) {
-            numAleatorio_Uno = (0..9).random()
-            numAleatorio_Dos = (0..9).random()
+            while (numAleatorio_Uno % numAleatorio_Dos != 0 || result == 0) {
+                numAleatorio_Uno = (Math.random() * 9 + 1).toInt()
+                numAleatorio_Dos = (Math.random() * 9 + 1).toInt()
+                result = numAleatorio_Uno / numAleatorio_Dos
+            }
 
-            result = numAleatorio_Uno * numAleatorio_Dos
-
-                for (i in 0 until numeros.size) {
-                    val id = resources.getIdentifier(numeros[i], "drawable", packageName)
-                    if (numAleatorio_Uno == i) {
-                        ivAuno.setImageResource(id)
-                    }
-                    if (numAleatorio_Dos == i) {
-                        ivAdos.setImageResource(id)
-                    }
+            for (i in numeros.indices) {
+                val id = resources.getIdentifier(numeros[i], "drawable", packageName)
+                if (numAleatorio_Uno == i) {
+                    ivAuno.setImageResource(id)
                 }
-
-
-        }
-        else {
-            val intent = Intent(this, MainActivityNivel7::class.java)
+                if (numAleatorio_Dos == i) {
+                    ivAdos.setImageResource(id)
+                }
+            }
+        } else {
+            val intent = Intent(this, MainActivityNivel8::class.java)
             string_Vcore = score.toString()
             string_Vidas = vidas.toString()
-
-            intent.putExtra("Jugador", nombre_Jugador)
+            intent.putExtra("jugador", nombre_Jugador)
             intent.putExtra("score", string_Vcore)
             intent.putExtra("vidas", string_Vidas)
-
             mp.stop()
             mp.release()
             startActivity(intent)
