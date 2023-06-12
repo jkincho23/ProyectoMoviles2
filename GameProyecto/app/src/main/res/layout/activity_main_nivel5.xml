@@ -8,7 +8,7 @@
     tools:context=".MainActivityNivel3">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarNivel3"
+        android:id="@+id/toolbarNivel5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_primary"
@@ -123,7 +123,7 @@
         app:layout_constraintEnd_toStartOf="@+id/NumeroDos"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toEndOf="@+id/NumeroUno"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarNivel3"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarNivel5"
         app:layout_constraintVertical_bias="0.956"
         app:srcCompat="@drawable/multiplicacion" />
 
