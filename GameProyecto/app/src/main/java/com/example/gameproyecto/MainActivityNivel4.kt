@@ -80,7 +80,7 @@ class MainActivityNivel4 : AppCompatActivity() {
             1 -> iv_Vidas.setImageResource(R.drawable.unavida)
         }
 
-        val myToolbar: Toolbar = findViewById(R.id.toolbarNivel3)
+        val myToolbar: Toolbar = findViewById(R.id.toolbarNivel4)
         setSupportActionBar(myToolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(R.mipmap.ic_launcher)

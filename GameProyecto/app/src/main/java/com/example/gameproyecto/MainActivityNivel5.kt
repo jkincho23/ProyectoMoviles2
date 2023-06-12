@@ -49,7 +49,7 @@ class MainActivityNivel5 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Toast.makeText(this, "MainActivity5", Toast.LENGTH_SHORT).show()
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_main_nivel5)
 
         Toast.makeText(this, "Nivel 5 - Multiplicaciones", Toast.LENGTH_SHORT).show()
 
@@ -71,7 +71,7 @@ class MainActivityNivel5 : AppCompatActivity() {
         nombre_Jugador = intent.getStringExtra("Jugador").toString()
         tv_nombre.text = "Jugador $nombre_Jugador"
 
-        val myToolbar: Toolbar = findViewById(R.id.toolbarNivel1)
+        val myToolbar: Toolbar = findViewById(R.id.toolbarNivel5)
         setSupportActionBar(myToolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(R.mipmap.ic_launcher)
