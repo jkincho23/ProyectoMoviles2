@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -47,7 +48,6 @@ class MainActivityNivel3 : AppCompatActivity() {
 
         Toast.makeText(this, "Nivel 3 - Restas", Toast.LENGTH_SHORT).show()
         initComponents()
-
         numeroAleatorio()
 
     }
@@ -92,7 +92,7 @@ class MainActivityNivel3 : AppCompatActivity() {
         mpBad = MediaPlayer.create(this, R.raw.bad)
     }
 
-    fun comparar() {
+    fun comparar(view: View) {
         val respuesta = et_Respuesta.text.toString()
 
         if (respuesta.isNotEmpty()) {

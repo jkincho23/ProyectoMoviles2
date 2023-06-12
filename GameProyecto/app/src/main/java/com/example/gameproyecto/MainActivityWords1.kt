@@ -102,11 +102,11 @@ class MainActivityWords1 : AppCompatActivity() {
                     }
                     2 -> {
                         iv_vidas.setImageResource(R.drawable.dosvidask)
-                        Toast.makeText(this, "Quedan dos manzanas", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Quedan dos letras", Toast.LENGTH_SHORT).show()
                     }
                     1 -> {
                         iv_vidas.setImageResource(R.drawable.unavidak)
-                        Toast.makeText(this, "Queda una manzana", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Queda una letra", Toast.LENGTH_SHORT).show()
                     }
                     0 -> {
                         mp.stop()
