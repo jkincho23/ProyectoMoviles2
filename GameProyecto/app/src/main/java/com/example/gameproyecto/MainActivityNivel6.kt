@@ -19,7 +19,6 @@ import com.google.firebase.ktx.Firebase
 
 
 class MainActivityNivel6 : AppCompatActivity() {
-
     private lateinit var rootDataBaseRef: DatabaseReference
     private lateinit var fireBaseAuth: FirebaseAuth
 
@@ -51,7 +50,6 @@ class MainActivityNivel6 : AppCompatActivity() {
 
         Toast.makeText(this, "Nivel 6 - Multiplicaciones Intermedias", Toast.LENGTH_SHORT).show()
         initComponents()
-
         numeroAleatorio()
 
     }
@@ -71,11 +69,11 @@ class MainActivityNivel6 : AppCompatActivity() {
         tv_nombre.text = "Jugador $nombre_Jugador"
 
         string_Vcore = intent.getStringExtra("score").toString()
-        score = Integer.parseInt(string_Vcore);
+        score = Integer.parseInt(string_Vcore)
         tv_score.text = "Score: $score"
 
         string_Vidas = intent.getStringExtra("vidas").toString()
-        vidas = Integer.parseInt(string_Vidas);
+        vidas = Integer.parseInt(string_Vidas)
 
         when (vidas) {
             3 -> iv_Vidas.setImageResource(R.drawable.tresvidas)
@@ -103,7 +101,7 @@ class MainActivityNivel6 : AppCompatActivity() {
 
             println("numAleatorio_Uno: $numAleatorio_Uno")
             println("numAleatorio_Dos: $numAleatorio_Dos")
-            println("Comparison result: ${(numAleatorio_Uno * numAleatorio_Dos) == respuesta.toInt()}")
+            println("Comparison result: ${(numAleatorio_Uno + numAleatorio_Dos) == respuesta.toInt()}")
 
             if (result == respuesta.toInt()) {
                 mpGreat.start()
@@ -143,14 +141,18 @@ class MainActivityNivel6 : AppCompatActivity() {
             Toast.makeText(this, "Debes dar una respuesta", Toast.LENGTH_SHORT).show()
         }
     }
+
+
+
     fun numeroAleatorio() {
 
-        if (score <= 14) {
+        if (score <= 11) {
             numAleatorio_Uno = (0..9).random()
             numAleatorio_Dos = (0..9).random()
 
             result = numAleatorio_Uno * numAleatorio_Dos
 
+            if (result >= 0) {
                 for (i in 0 until numeros.size) {
                     val id = resources.getIdentifier(numeros[i], "drawable", packageName)
                     if (numAleatorio_Uno == i) {
@@ -160,28 +162,36 @@ class MainActivityNivel6 : AppCompatActivity() {
                         ivAdos.setImageResource(id)
                     }
                 }
-
-
+            }
+            else
+            {
+                numeroAleatorio()
+            }
         }
         else {
             val intent = Intent(this, MainActivityNivel7::class.java)
             string_Vcore = score.toString()
             string_Vidas = vidas.toString()
 
+
             intent.putExtra("Jugador", nombre_Jugador)
             intent.putExtra("score", string_Vcore)
             intent.putExtra("vidas", string_Vidas)
+
+
 
             mp.stop()
             mp.release()
             startActivity(intent)
             finish()
+
         }
     }
 
     fun ingresarResultado() {
 
         val datosJugador = HashMap<String, Any>()
+
 
         datosJugador["score"] = score
         val nuevoChildRef = rootDataBaseRef.child(nombre_Jugador)
@@ -196,4 +206,3 @@ class MainActivityNivel6 : AppCompatActivity() {
             }
     }
 }
-
