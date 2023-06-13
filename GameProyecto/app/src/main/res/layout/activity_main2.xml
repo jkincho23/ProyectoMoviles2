@@ -53,7 +53,8 @@
         android:layout_marginTop="108dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_manzanas"
-        app:srcCompat="@drawable/cero" />
+        app:srcCompat="@drawable/cero"
+        android:contentDescription="@string/numero1" />
 
     <TextView
         android:id="@+id/tv_manzanas"
@@ -77,7 +78,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.228"
-        app:srcCompat="@drawable/tresvidas" />
+        app:srcCompat="@drawable/tresvidas"
+        android:contentDescription="@string/et_vidas" />
 
     <ImageView
         android:id="@+id/NumeroDos"
@@ -87,7 +89,8 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cero" />
+        app:srcCompat="@drawable/cero"
+        android:contentDescription="@string/numero1" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -99,7 +102,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/NumeroUno"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/adicion" />
+        app:srcCompat="@drawable/adicion"
+        android:contentDescription="@string/suma" />
 
     <EditText
         android:id="@+id/et_resultado"
@@ -112,7 +116,9 @@
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.611" />
+        app:layout_constraintVertical_bias="0.611"
+        android:autofillHints=""
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/tv_score"

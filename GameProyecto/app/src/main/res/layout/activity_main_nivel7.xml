@@ -48,8 +48,8 @@
 
     <ImageView
         android:id="@+id/NumeroUno"
-        android:layout_width="89dp"
-        android:layout_height="100dp"
+        android:layout_width="51dp"
+        android:layout_height="71dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="108dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,13 +82,25 @@
 
     <ImageView
         android:id="@+id/NumeroDos"
-        android:layout_width="89dp"
-        android:layout_height="100dp"
+        android:layout_width="56dp"
+        android:layout_height="67dp"
         android:layout_marginTop="300dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="184dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cero" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="56dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="304dp"
+        app:layout_constraintEnd_toStartOf="@+id/NumeroDos"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/NumeroUno"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/resta" />
 
     <EditText
         android:id="@+id/et_resultado"
@@ -103,6 +115,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.611" />
 
+    <ImageView
+        android:id="@+id/segundomenos"
+        android:layout_width="66dp"
+        android:layout_height="63dp"
+
+        android:layout_marginTop="304dp"
+        app:layout_constraintEnd_toStartOf="@+id/NumeroTres"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toEndOf="@+id/NumeroDos"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/adicion" />
+
+    <ImageView
+        android:id="@+id/NumeroTres"
+        android:layout_width="56dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cero" />
+
+
     <TextView
         android:id="@+id/tv_score"
         android:layout_width="70dp"
@@ -115,16 +150,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="138dp"
-        android:layout_height="121dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/et_resultado"
-        app:layout_constraintEnd_toStartOf="@+id/NumeroDos"
-        app:layout_constraintTop_toTopOf="@+id/toolbarNivel7"
-        app:layout_constraintVertical_bias="0.963"
-        app:srcCompat="@drawable/division" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,5 +16,7 @@
     <string name="tv_words">Words Test</string>
     <string name="tv_intentos">Intentos:</string>
     <string name="btn_comprobark">¡Comprobar!</string>
+    <string name="numero1">Numero1</string>
+    <string name="suma">suma</string>
 
 </resources>

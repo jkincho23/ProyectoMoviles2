@@ -1,5 +1,6 @@
 package com.example.gameproyecto
 
+import android.app.AlertDialog
 import android.content.Intent
 
 import android.media.MediaPlayer
@@ -151,7 +152,7 @@ class MainActivityNivel5 : AppCompatActivity() {
 
             result = numAleatorio_Uno * numAleatorio_Dos
 
-            if (result >= 0) {
+            if (result in 0..50) {
                 for (i in 0 until numeros.size) {
                     val id = resources.getIdentifier(numeros[i], "drawable", packageName)
                     if (numAleatorio_Uno == i) {
@@ -203,5 +204,23 @@ class MainActivityNivel5 : AppCompatActivity() {
                 Toast.makeText(this, "Error al guardar los datos en Firebase", Toast.LENGTH_SHORT)
                     .show()
             }
+    }
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("¿Are you sure you want to exit?")
+            .setCancelable(false)
+            .setPositiveButton("Sí") { dialog, id ->
+                val intent = Intent(this, MainActivity::class.java)
+                mp.stop()
+                mp.release()
+                startActivity(intent)
+                finish()
+            }
+            .setNegativeButton("No") { dialog, id ->
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
     }
 }

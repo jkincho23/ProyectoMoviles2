@@ -1,5 +1,6 @@
 package com.example.gameproyecto
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class MainActivityNivel7 : AppCompatActivity() {
     private lateinit var rootDataBaseRef: DatabaseReference
@@ -30,10 +34,12 @@ class MainActivityNivel7 : AppCompatActivity() {
     private lateinit var ivAuno : ImageView
     private lateinit var iv_Vidas : ImageView
     private lateinit var ivAdos : ImageView
+    private lateinit var ivATres : ImageView
 
     private var score: Int = 0
     private var numAleatorio_Uno: Int = 0
     private var numAleatorio_Dos: Int = 0
+    private var numAleatorio_Tres: Int = 0
     private var result: Int = 0
     private var vidas: Int = 0
 
@@ -46,7 +52,7 @@ class MainActivityNivel7 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_nivel7)
 
-        Toast.makeText(this, "Nivel 7 - Divisiones", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Nivel 7 - Combinadas", Toast.LENGTH_SHORT).show()
         initComponents()
         numeroAleatorio()
 
@@ -60,6 +66,7 @@ class MainActivityNivel7 : AppCompatActivity() {
         tv_nombre = findViewById(R.id.tv_nombre)
         ivAuno = findViewById(R.id.NumeroUno)
         ivAdos = findViewById(R.id.NumeroDos)
+        ivATres = findViewById(R.id.NumeroTres)
         iv_Vidas = findViewById(R.id.imageView)
         et_Respuesta = findViewById(R.id.et_resultado)
         vidas = 3
@@ -147,8 +154,9 @@ class MainActivityNivel7 : AppCompatActivity() {
         if (score <= 13) {
             numAleatorio_Uno = (0..9).random()
             numAleatorio_Dos = (0..9).random()
+            numAleatorio_Tres = (0..9).random()
 
-            result = numAleatorio_Uno / numAleatorio_Dos
+            result = numAleatorio_Uno - numAleatorio_Dos + numAleatorio_Tres
 
             if (result >= 0) {
                 for (i in 0 until numeros.size) {
@@ -158,6 +166,10 @@ class MainActivityNivel7 : AppCompatActivity() {
                     }
                     if (numAleatorio_Dos == i) {
                         ivAdos.setImageResource(id)
+                    }
+
+                    if (numAleatorio_Tres == i) {
+                        ivATres.setImageResource(id)
                     }
                 }
             }
@@ -203,4 +215,23 @@ class MainActivityNivel7 : AppCompatActivity() {
                     .show()
             }
     }
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("¿Are you sure you want to exit?")
+            .setCancelable(false)
+            .setPositiveButton("Sí") { dialog, id ->
+                val intent = Intent(this, MainActivity::class.java)
+                mp.stop()
+                mp.release()
+                startActivity(intent)
+                finish()
+            }
+            .setNegativeButton("No") { dialog, id ->
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
+    }
+
 }
